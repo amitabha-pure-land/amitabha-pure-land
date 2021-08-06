@@ -1,0 +1,30 @@
+#!/bin/bash
+cd `dirname $0`
+
+if [ "${NODE_ENV}" == "production" ] ; then
+    export APP_MODE=Production
+elif [ "${NODE_ENV}" == "staging" ] ; then
+    export APP_MODE=Staging
+else
+    export APP_MODE=Development
+fi
+
+echo "post-build for $APP_MODE"
+
+if [ "${VUE_APP_PARSE_APP_ID}" == "" ] ; then
+    ln -sf "`pwd`/../apps/web/.parse.js$NODE_ENV.local" ../pages/online/js/parse.js
+    export SOURCE_VERSION=`git rev-parse HEAD`
+    sed -i '' -e "s/SOURCE_VERSION/$SOURCE_VERSION/g" ../pages/online/version.html
+    sed -i '' -e "s/APP_MODE/$APP_MODE/g" ../pages/online/version.html
+    exit 0
+fi
+
+echo SOURCE_VERSION: ${SOURCE_VERSION}
+sed -i "s/SOURCE_VERSION/$SOURCE_VERSION/g" ../pages/online/version.html
+sed -i "s/APP_MODE/$APP_MODE/g" ../pages/online/version.html
+
+sed -i "s/VUE_APP_PARSE_APP_ID/$VUE_APP_PARSE_APP_ID/" ../pages/online/js/parse.js
+sed -i "s/VUE_APP_PARSE_JS_KEY/$VUE_APP_PARSE_JS_KEY/" ../pages/online/js/parse.js
+echo "Parse.serverURL = '$VUE_APP_PARSE_SERVER_URL';" >> ../pages/online/js/parse.js
+
+rm -rf ../apps
