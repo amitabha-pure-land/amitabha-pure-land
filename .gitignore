@@ -1,3 +1,7 @@
+.vscode/
+live_data/
+csv/
+
 # Logs
 logs
 *.log
