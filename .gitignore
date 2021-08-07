@@ -1,6 +1,7 @@
 .vscode/
 live_data/
 csv/
+online
 
 # Logs
 logs
