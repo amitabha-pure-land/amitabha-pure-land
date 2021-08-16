@@ -14,7 +14,7 @@ def process_file(module_html, module_id, module_index)
     filename = "./csv/modules.csv"
     fileExisted = File.file?(filename)
     module_csv = File.open(filename, fileExisted ? 'a' : 'w')
-    module_url = module_html.gsub('../pages/', '../')
+    module_url = module_html.gsub('../docs/', '../')
     if (!fileExisted)
       module_csv.puts "objectId,name,url,index"
     end
@@ -56,4 +56,4 @@ usage: ruby #{File.basename($0)} module_html module_id module_index
   main
 
 end
-#./create_module.rb ../pages/dzfs/04.html nCCAkgxyN6 8
+#./create_module.rb ../docs/dzfs/04.html nCCAkgxyN6 8
