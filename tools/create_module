@@ -1,0 +1,12 @@
+#!/bin/bash
+
+MODULE_HTML=$1
+ENV=$2
+
+if [ "${ENV}" == "" ] ; then
+    ENV=development
+fi
+
+source  ../.env.$ENV.local
+
+ruby create_module2.rb $MODULE_HTML $VUE_APP_PARSE_APP_ID $PARSE_MASTER_KEY
