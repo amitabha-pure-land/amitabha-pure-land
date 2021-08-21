@@ -10,7 +10,7 @@ def call_parse_function(name, params)
   json['result']
 end
 
-def process_file(module_html)
+def process_file(module_html, module_id = nil)
     array = module_html.split('/')
     class_name = array[array.length - 2] + "_" + array[array.length - 1]
 
@@ -29,7 +29,7 @@ def process_file(module_html)
     module_title = doc.title
     module_title.strip!
 
-    params = {name: module_title, url: module_url}
+    params = {name: module_title, url: module_url, moduleId: module_id}
     result = call_parse_function 'createModule', params
     module_id = result['id']
     module_index = result['index']
@@ -57,19 +57,20 @@ def main
     module_html = ARGV[0]
     app_id = ARGV[1] || "NRXUJ7VoDl3pho3QihRUnN6JoRdAOPiLnV5A0vifIwE"
     master_key = ARGV[2] || "wVuwX7XYH0E2X9fmMXoxyigZI3eEzJDnAGG3B8AI4lA"
-    server_url = ARGV[3] || 'http://localhost:1337/parse'
-
+    module_id = ARGV[3] 
+    
+    server_url = 'http://localhost:1337/parse'
 
     Parse.setup app_id: app_id, master_key: master_key, server_url: server_url
              
-    process_file(module_html)
+    process_file(module_html, module_id)
 end
 
 
 if __FILE__ == $0
   usage = <<-EOU
 
-usage: ruby #{File.basename($0)} module_html (optional) app_id master_key server_url
+usage: ruby #{File.basename($0)} module_html (optional) module_id app_id master_key server_url
 
   EOU
 

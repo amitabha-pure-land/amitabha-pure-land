@@ -3,6 +3,7 @@
 live_data/
 csv/
 online
+*.json
 
 # Logs
 logs
