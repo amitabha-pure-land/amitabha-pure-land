@@ -1,8 +1,8 @@
 #!/bin/bash
 
 MODULE_HTML=$1
-MODULE_ID=$2
-ENV=$3
+ENV=$2
+MODULE_ID=$3
 
 if [ "${ENV}" == "" ] ; then
     ENV=development

@@ -53,22 +53,29 @@ def youtube_playlist_to_csv(playlist_id, csv_file_dir)
 
   result = service.list_playlists('snippet', id: playlist_id)
   filename = "#{csv_file_dir}/#{result.items[0].snippet.title}.csv"
-  puts filename
 
   i = 0
+  array = []
+  nextPageToken = nil
+  loop do
+    result = service.list_playlist_items('snippet', playlist_id: playlist_id, max_results: 1000, page_token: nextPageToken)
+    result.items.each do |v|
+      i += 1
+      url = "https://youtu.be/#{v.snippet.resource_id.video_id}"
+      puts "#{i} - #{url}"
+      array << [v.snippet.published_at, url, v.snippet.channel_title, v.snippet.title, playlist_id]
+    end
+    nextPageToken = result.next_page_token
+    break if !nextPageToken
+  end
+  
+  array = array.sort_by { |e| e[3] }
+
+  puts "writng to file: #{filename}"
   CSV.open(filename, "w") do |csv|
     csv << ['Published Date', 'Video URL', 'Channel', 'Title', 'Description']
-    nextPageToken = nil
-    loop do
-      result = service.list_playlist_items('snippet', playlist_id: playlist_id, max_results: 1000, page_token: nextPageToken)
-      result.items.each do |v|
-        i += 1
-        url = "https://youtu.be/#{v.snippet.resource_id.video_id}"
-        puts "#{i} - #{url}"
-        csv << [v.snippet.published_at, url, v.snippet.channel_title, v.snippet.title, playlist_id]
-      end
-      nextPageToken = result.next_page_token
-      break if !nextPageToken
+    array.each do |e|
+      csv << e
     end
   end
 
