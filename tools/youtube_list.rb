@@ -12,7 +12,7 @@ require 'json'
 require 'csv'
 
 # REPLACE WITH VALID REDIRECT_URI FOR YOUR CLIENT
-REDIRECT_URI = 'http://localhost'
+REDIRECT_URI = 'http://localhost:4567'
 APPLICATION_NAME = 'YouTube Data API Ruby Tests'
 
 # REPLACE WITH NAME/LOCATION OF YOUR client_secrets.json FILE
@@ -29,8 +29,7 @@ def authorize
 
   client_id = Google::Auth::ClientId.from_file(CLIENT_SECRETS_PATH)
   token_store = Google::Auth::Stores::FileTokenStore.new(file: CREDENTIALS_PATH)
-  authorizer = Google::Auth::UserAuthorizer.new(
-    client_id, SCOPE, token_store)
+  authorizer = Google::Auth::UserAuthorizer.new(client_id, SCOPE, token_store)
   user_id = 'default'
   credentials = authorizer.get_credentials(user_id)
   if credentials.nil?
@@ -46,12 +45,19 @@ def authorize
 end
 
 def youtube_playlist_to_csv(playlist_id, csv_file_dir)
-  # Initialize the API
-  service = Google::Apis::YoutubeV3::YouTubeService.new
-  service.client_options.application_name = APPLICATION_NAME
-  service.authorization = authorize
+  begin
+    # Initialize the API
+    service = Google::Apis::YoutubeV3::YouTubeService.new
+    service.client_options.application_name = APPLICATION_NAME
+    service.authorization = authorize
 
-  result = service.list_playlists('snippet', id: playlist_id)
+    result = service.list_playlists('snippet', id: playlist_id)
+  rescue Google::Apis::AuthorizationError => exception
+    puts exception
+    FileUtils.remove_file(CREDENTIALS_PATH)
+    retry
+  end
+
   filename = "#{csv_file_dir}/#{result.items[0].snippet.title}.csv"
 
   i = 0
@@ -84,6 +90,7 @@ end
 def main
   playlist_id = ARGV[0] 
   csv_file_dir = ARGV[1] || '.'
+  FileUtils.remove_file(CREDENTIALS_PATH) if ARGV[2]
 
   youtube_playlist_to_csv(playlist_id, csv_file_dir)
 end
@@ -92,7 +99,7 @@ end
 if __FILE__ == $0
 usage = <<-EOU
 
-usage: ruby #{File.basename($0)} playlist_id csv_file_dir
+usage: ruby #{File.basename($0)} playlist_id csv_file_dir (optional)force_auth
 
 EOU
 
