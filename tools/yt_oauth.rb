@@ -1,6 +1,4 @@
 require 'sinatra'
-require 'oauth2'
-require 'json'
 
 get '/oauth2callback' do
   puts params[:code]
