@@ -1,7 +1,7 @@
 require 'sinatra'
 
 get '/oauth2callback' do
-  puts params[:code]
+  STDERR.puts params[:code]
   Process.kill('TERM', Process.pid)
 end
 

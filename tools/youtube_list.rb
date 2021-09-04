@@ -10,6 +10,7 @@ require 'googleauth/stores/file_token_store'
 require 'fileutils'
 require 'json'
 require 'csv'
+require 'open3'
 
 # REPLACE WITH VALID REDIRECT_URI FOR YOUR CLIENT
 REDIRECT_URI = 'http://localhost:4567'
@@ -37,7 +38,44 @@ def authorize
     puts "Open the following URL in the browser and enter the " +
          "resulting code after authorization"
     puts url
-    code = STDIN.gets.chomp
+    
+    code = 'pending'
+    command = 'ruby yt_oauth.rb'
+    puts command
+    unprocessed_output = ""
+    Open3.popen3(command) {|stdin, stdout, stderr, wait_thr|
+
+      on_newline = ->(new_line) do
+          puts "process said: #{new_line}"
+          unless new_line.start_with?('== Sinatra')
+            code = new_line.chomp
+            stdin.close
+            stdout.close
+            stderr.close
+          end 
+      end
+  
+      Thread.new do
+          while not stderr.closed? # FYI this check is probably close to useless/bad
+              unprocessed_output += stderr.readpartial(4096)
+              if unprocessed_output =~ /(.+)\n/
+                  # extract the line
+                  new_line = $1
+                  # remove the line from unprocessed_output
+                  unprocessed_output.sub!(/(.+)\n/,"")
+                  # run the on_newline
+                  on_newline[new_line]
+              end
+  
+              # in theres no newline, this process will hang forever
+              # (e.g. probably want to add a timeout)
+          end
+      end
+  
+      wait_thr.join
+    }
+    
+    puts "code: #{code}"
     credentials = authorizer.get_and_store_credentials_from_code(
       user_id: user_id, code: code, base_url: REDIRECT_URI)
   end
