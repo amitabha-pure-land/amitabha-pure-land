@@ -4,10 +4,11 @@ import { installProxyMiddlewares } from "./lib/proxyMiddlewares.js";
 
 const NODE_ENV_DEV = "development";
 const nodeEnv = process.env.NODE_ENV || NODE_ENV_DEV;
-console.log(`nodeEnv: ${nodeEnv}`);
 process.env.NODE_ENV = nodeEnv;
+console.log(`nodeEnv: ${nodeEnv}`);
+
 dotEnv.config();
-console.log(`process.env.VUE_APP_PARSE_SERVER_URL: ${process.env.VUE_APP_PARSE_SERVER_URL}`);
+console.log(`process.env.SERVER_BASE_URL: ${process.env.SERVER_BASE_URL}`);
 
 const app = express();
 const port = process.env.PORT || 3000;
