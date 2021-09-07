@@ -2,7 +2,7 @@
 live_data/
 csv/
 online
-*.json
+client_secret.json
 
 # Logs
 logs

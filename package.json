@@ -1,0 +1,38 @@
+{
+  "name": "amtf-proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "amtf.js",
+  "type": "module",
+  "scripts": {
+    "start": "node amtf.js",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "lint": "eslint amtf.js lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/inflaton/amtf-proxy.git"
+  },
+  "author": "Inflaton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/inflaton/amtf-proxy/issues"
+  },
+  "homepage": "https://github.com/inflaton/amtf-proxy#readme",
+  "dependencies": {
+    "dotenv-flow": "^3.2.0",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.2"
+  },
+  "devDependencies": {
+    "jest": "^27.1.0",
+    "prettier": "^2.3.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.24.2",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^5.1.0"
+  }
+}
