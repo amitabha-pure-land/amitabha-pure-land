@@ -1,4 +1,3 @@
-.env*
 .vscode/
 live_data/
 csv/
@@ -76,7 +75,8 @@ typings/
 .yarn-integrity
 
 # dotenv environment variables file
-.env
+# .env
+.env*.local
 .env.test
 
 # parcel-bundler cache (https://parceljs.org/)
