@@ -28,7 +28,9 @@ jobs:
           port: ${{ secrets.PORT }}
           script: |
             cd ~/code/amitabha-pure-land # we move into our app's folder
+            source ~/.bashrc
             git pull # we pull any changes from git
+            node -v
             npm prune # we remove any unused dependencies
             npm install # we install any missing dependencies
             npm run build  --if-present # we build our app
