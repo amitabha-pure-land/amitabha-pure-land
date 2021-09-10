@@ -19,6 +19,9 @@
     "url": "https://github.com/inflaton/amtf-proxy/issues"
   },
   "homepage": "https://github.com/inflaton/amtf-proxy#readme",
+  "engines": {
+    "node": "14.x"
+  },
   "dependencies": {
     "axios": "^0.21.4",
     "dotenv-flow": "^3.2.0",
