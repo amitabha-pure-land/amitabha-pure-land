@@ -8,7 +8,8 @@ process.env.NODE_ENV = nodeEnv;
 console.log(`nodeEnv: ${nodeEnv}`);
 
 dotEnv.config();
-console.log(`process.env.SERVER_BASE_URL: ${process.env.SERVER_BASE_URL}`);
+console.log(`SERVER_BASE_URL: ${process.env.SERVER_BASE_URL}`);
+console.log(`DYNAMIC_PAGE_HOST: ${process.env.DYNAMIC_PAGE_HOST}`);
 
 const app = express();
 const port = process.env.PORT || 3000;

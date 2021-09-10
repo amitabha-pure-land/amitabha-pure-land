@@ -20,9 +20,11 @@
   },
   "homepage": "https://github.com/inflaton/amtf-proxy#readme",
   "dependencies": {
+    "axios": "^0.21.4",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
-    "express-http-proxy": "^1.6.2"
+    "express-http-proxy": "^1.6.2",
+    "node-cmd": "^5.0.0"
   },
   "devDependencies": {
     "jest": "^27.1.0",
