@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node amtf.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
-    "lint": "eslint amtf.js lib"
+    "lint": "eslint amtf.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +23,7 @@
     "node": "14.x"
   },
   "dependencies": {
+    "amtf-proxy": "^1.0.4",
     "axios": "^0.21.4",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",

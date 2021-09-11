@@ -1,6 +1,6 @@
 import express from "express";
 import dotEnv from "dotenv-flow";
-import { installProxyMiddlewares } from "./lib/proxyMiddlewares.js";
+import { installProxyMiddlewares } from "amtf-proxy";
 
 const NODE_ENV_DEV = "development";
 const nodeEnv = process.env.NODE_ENV || NODE_ENV_DEV;
