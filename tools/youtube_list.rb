@@ -90,8 +90,9 @@ def youtube_playlist_to_csv(playlist_id, csv_file_dir)
     service.authorization = authorize
 
     result = service.list_playlists('snippet', id: playlist_id)
-  rescue Google::Apis::AuthorizationError => exception
+  rescue => exception
     puts exception
+    puts "deleting: #{CREDENTIALS_PATH}"
     FileUtils.remove_file(CREDENTIALS_PATH)
     retry
   end
