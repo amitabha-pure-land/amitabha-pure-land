@@ -10,7 +10,8 @@ console.log(`nodeEnv: ${nodeEnv}`);
 
 dotEnv.config();
 console.log(`SERVER_BASE_URL: ${process.env.SERVER_BASE_URL}`);
-console.log(`DYNAMIC_PAGE_HOST: ${process.env.DYNAMIC_PAGE_HOST}`);
+console.log(`AMITABHA_MAIN_HOST: ${process.env.AMITABHA_MAIN_HOST}`);
+console.log(`AMITABHA_AUXILIARY_HOST: ${process.env.AMITABHA_AUXILIARY_HOST}`);
 
 const app = express();
 app.use(cors());
