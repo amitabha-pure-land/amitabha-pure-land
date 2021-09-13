@@ -6,16 +6,18 @@ module.exports = {
 
       env: {
         AMITABHA_MAIN_HOST: "https://namo-amitabha.herokuapp.com",
-        PORT: 3000,
+	//DEBUG: "express-http-proxy",
       },
       // add development environment variables
       env_development: {
+        PORT: 3000,
         SERVER_BASE_URL: "http://localhost:3000",
       },
       // add production environment variables
       env_production: {
         NODE_ENV: "production",
-        SERVER_BASE_URL: "http://119.8.184.217",
+        PORT: 8080,
+        SERVER_BASE_URL: "http://159.138.24.38",
       },
     },
   ],
