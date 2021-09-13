@@ -6,7 +6,7 @@ module.exports = {
 
       env: {
         AMITABHA_MAIN_HOST: "https://namo-amitabha.herokuapp.com",
-	//DEBUG: "express-http-proxy",
+        // DEBUG: "express-http-proxy",
       },
       // add development environment variables
       env_development: {
