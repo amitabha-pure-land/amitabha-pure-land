@@ -3,6 +3,8 @@ module.exports = {
     {
       script: "amtf.js",
       watch: ".",
+      exec_mode: "cluster_mode",
+      instances: 1,
 
       env: {
         AMITABHA_MAIN_HOST: "https://namo-amitabha.herokuapp.com",
@@ -23,16 +25,33 @@ module.exports = {
   ],
 
   deploy: {
+    // "production" is the environment name
     production: {
-      user: "SSH_USERNAME",
-      host: "SSH_HOSTMACHINE",
+      // SSH key path, default to $HOME/.ssh
+      key: "~/.ssh/aws-amtf.pem",
+      // SSH user
+      user: "ubuntu",
+      // SSH host
+      host: ["13.228.189.66"],
+      // SSH options with no command-line flag, see 'man ssh'
+      // can be either a single string or an array of strings
+      ssh_options: "StrictHostKeyChecking=no",
+      // GIT remote/branch
       ref: "origin/master",
-      repo: "GIT_REPOSITORY",
-      path: "DESTINATION_PATH",
+      // GIT remote
+      repo: "https://github.com/amitabha-pure-land/amitabha-pure-land.github.io.git",
+      // path in the server
+      path: "/home/ubuntu/code/amitabha-pure-land",
+      // Pre-setup command or path to a script on your local machine
+      "pre-setup": "",
+      // Post-setup commands or path to a script on the host machine
+      // eg: placing configurations in the shared dir etc
+      "post-setup": "",
+      // pre-deploy action
       "pre-deploy-local": "",
+      // post-deploy action
       "post-deploy":
         "npm install && pm2 reload ecosystem.config.cjs --env production",
-      "pre-setup": "",
     },
   },
 };
