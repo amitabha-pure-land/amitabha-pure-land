@@ -13,6 +13,15 @@ console.log(`SERVER_BASE_URL: ${process.env.SERVER_BASE_URL}`);
 console.log(`AMITABHA_MAIN_HOST: ${process.env.AMITABHA_MAIN_HOST}`);
 console.log(`AMITABHA_AUXILIARY_HOST: ${process.env.AMITABHA_AUXILIARY_HOST}`);
 
+process.on("unhandledRejection", (reason, p) => {
+  console.log("Unhandled Rejection at: Promise ", p, " reason: ", reason);
+  // application specific logging, throwing an error, or other logic here
+});
+
+process.on("uncaughtException", function (e) {
+  console.log(e);
+});
+
 const app = express();
 app.use(cors());
 
