@@ -51,7 +51,7 @@ module.exports = {
       "pre-deploy-local": "",
       // post-deploy action
       "post-deploy":
-        "npm install && pm2 reload ecosystem.config.cjs --env production",
+        "npm install && pm2 reload ecosystem.config.cjs --env production && npm list --depth=0",
     },
   },
 };
