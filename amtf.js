@@ -59,7 +59,7 @@ process.on("SIGINT", handle);
 process.on("SIGTERM", handle);
 
 // Intentionally cause an exception, but don't catch it.
-nonexistentFunc();
+// nonexistentFunc();
 // Still crashes Node.js
 
 const app = express();
