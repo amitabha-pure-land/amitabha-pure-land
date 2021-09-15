@@ -59,7 +59,7 @@ def main
     master_key = ARGV[2] || "wVuwX7XYH0E2X9fmMXoxyigZI3eEzJDnAGG3B8AI4lA"
     module_id = ARGV[3] 
     
-    server_url = 'http://localhost:1337/parse'
+    server_url = ENV["SERVER_URL"] || 'http://localhost:1337/parse'
 
     Parse.setup app_id: app_id, master_key: master_key, server_url: server_url
              
