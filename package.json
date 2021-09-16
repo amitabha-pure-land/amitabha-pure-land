@@ -7,7 +7,10 @@
   "scripts": {
     "start": "node amtf.js",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
-    "lint": "eslint amtf.js"
+    "lint": "eslint --cache \"**/*.{js,cjs}\"",
+    "lint-fix": "eslint --cache --fix \"**/*.{js,cjs}\"",
+    "prettier": "prettier --write '{cloud,lib}/{**/*,*}.js' 'index.js'",
+    "watch": "babel-watch amtf.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +26,8 @@
     "node": "14.x"
   },
   "dependencies": {
-    "amtf-proxy": "^1.1.7",
+    "@babel/core": "^7.15.5",
+    "amtf-proxy": "^1.1.8",
     "axios": "^0.21.4",
     "cors": "^2.8.5",
     "dotenv-flow": "^3.2.0",
@@ -32,14 +36,15 @@
     "node-cmd": "^5.0.0"
   },
   "devDependencies": {
-    "jest": "^27.1.0",
-    "prettier": "^2.3.2",
+    "babel-watch": "^7.5.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-promise": "^5.1.0"
+    "eslint-plugin-promise": "^5.1.0",
+    "jest": "^27.1.0",
+    "prettier": "^2.3.2"
   }
 }
