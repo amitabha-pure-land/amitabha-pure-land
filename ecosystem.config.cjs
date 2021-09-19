@@ -51,7 +51,7 @@ module.exports = {
       "pre-deploy-local": "",
       // post-deploy action
       "post-deploy":
-        "npm install --only=prod && NODE_ENV=$NODE_ENV VUE_APP_PARSE_SERVER_URL=$VUE_APP_PARSE_SERVER_URL VUE_APP_PARSE_APP_ID=$VUE_APP_PARSE_APP_ID VUE_APP_PARSE_JS_KEY=$VUE_APP_PARSE_JS_KEY npm run build && pm2 reload ecosystem.config.cjs --env production",
+        "npm install --only=prod && NODE_ENV=production VUE_APP_PARSE_SERVER_URL=http://13.228.189.66/parse VUE_APP_PARSE_APP_ID=ITYDPoZKA1nYeyFaUgPlYM99sDL2I5cNQ7huEKcw VUE_APP_PARSE_JS_KEY=hRETBihNdF7SO9FHM78GxJLbo4cYCuEi4XrrDWED npm run build && pm2 reload ecosystem.config.cjs --env production",
     },
   },
 };
