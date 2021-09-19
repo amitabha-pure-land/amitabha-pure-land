@@ -1,0 +1,6 @@
+test/fixtures
+**/app/public
+node_modules
+logs
+online
+docs
