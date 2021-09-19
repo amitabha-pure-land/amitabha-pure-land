@@ -1,7 +1,8 @@
 .vscode/
 live_data/
 csv/
-online
+online/
+.parse*
 client_secret.json
 
 # Logs

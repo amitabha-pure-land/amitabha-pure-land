@@ -2,15 +2,18 @@
   "name": "amitabha-pure-land",
   "version": "1.0.0",
   "description": "",
-  "main": "amtf.js",
+  "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node amtf.js",
+    "start": "node index.js",
+    "postinstall": "ln -sf `pwd`/.parse* node_modules/f4amtf/web/ && ln -sf `pwd`/.env* node_modules/f4amtf/web/",
+    "build": "cd node_modules/f4amtf/web && npm install && VUE_APP_PARENT_URL=.. VUE_APP_AMITABHA=香光庄严 VUE_APP_PUBLIC_PATH=/online/ npm run build -- --mode $NODE_ENV && mv dist ../online && ../scripts/post-build",
+    "postbuild": "rm -rf online && mv node_modules/f4amtf/online .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "lint": "eslint --cache \"**/*.{js,cjs}\"",
     "lint-fix": "eslint --cache --fix \"**/*.{js,cjs}\"",
     "prettier": "prettier --write '{cloud,lib}/{**/*,*}.js' 'index.js'",
-    "watch": "babel-watch amtf.js"
+    "watch": "babel-watch index.js"
   },
   "repository": {
     "type": "git",
@@ -27,12 +30,14 @@
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
-    "amtf-proxy": "^1.1.8",
+    "amtf-proxy": "^1.2.9",
     "axios": "^0.21.4",
+    "b4amtf": "^1.0.1",
     "cors": "^2.8.5",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
+    "f4amtf": "^1.0.2",
     "node-cmd": "^5.0.0"
   },
   "devDependencies": {
