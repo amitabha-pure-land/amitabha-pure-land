@@ -3,9 +3,6 @@ module.exports = {
     {
       script: "amtf.js",
       watch: ".",
-      exec_mode: "cluster_mode",
-      instances: 1,
-      node_args: "-r ./dotenv-config.cjs",
 
       env: {
         VUE_APP_PARSE_SERVER_URL: "http://13.228.189.66/parse",
@@ -54,7 +51,7 @@ module.exports = {
       "pre-deploy-local": "",
       // post-deploy action
       "post-deploy":
-        "npm install --only=prod && npm run build && pm2 reload ecosystem.config.cjs --env production",
+        "npm install --only=prod && NODE_ENV=$NODE_ENV VUE_APP_PARSE_SERVER_URL=$VUE_APP_PARSE_SERVER_URL VUE_APP_PARSE_APP_ID=$VUE_APP_PARSE_APP_ID VUE_APP_PARSE_JS_KEY=$VUE_APP_PARSE_JS_KEY npm run build && pm2 reload ecosystem.config.cjs --env production",
     },
   },
 };
