@@ -8,7 +8,9 @@ module.exports = {
       node_args: "-r ./dotenv-config.cjs",
 
       env: {
-        AMITABHA_MAIN_HOST: "https://namo-amitabha.herokuapp.com",
+        VUE_APP_PARSE_SERVER_URL: "http://13.228.189.66/parse",
+        VUE_APP_PARSE_APP_ID: "ITYDPoZKA1nYeyFaUgPlYM99sDL2I5cNQ7huEKcw",
+        VUE_APP_PARSE_JS_KEY: "hRETBihNdF7SO9FHM78GxJLbo4cYCuEi4XrrDWED",
       },
       // add development environment variables
       env_development: {
