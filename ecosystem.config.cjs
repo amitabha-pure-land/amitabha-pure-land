@@ -5,6 +5,7 @@ module.exports = {
       watch: ".",
       exec_mode: "cluster_mode",
       instances: 1,
+      node_args : '-r dotenv/config',
 
       env: {
         AMITABHA_MAIN_HOST: "https://namo-amitabha.herokuapp.com",
