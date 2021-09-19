@@ -1,21 +1,11 @@
 import express from "express";
 import dotEnv from "dotenv-flow";
+import setupParseServer from "b4amtf";
+import { setupWebClient } from "f4amtf";
 import { installProxyMiddlewares } from "amtf-proxy";
-import cors from "cors";
-import { arch } from "process";
+import { arch, exit } from "process";
 
 console.log(`This processor architecture is ${arch}`);
-
-const NODE_ENV_DEV = "development";
-const nodeEnv = process.env.NODE_ENV || NODE_ENV_DEV;
-process.env.NODE_ENV = nodeEnv;
-console.log(`nodeEnv: ${nodeEnv}`);
-
-dotEnv.config();
-console.log(`SERVER_BASE_URL: ${process.env.SERVER_BASE_URL}`);
-console.log(`AMITABHA_MAIN_HOST: ${process.env.AMITABHA_MAIN_HOST}`);
-console.log(`AMITABHA_AUXILIARY_HOST: ${process.env.AMITABHA_AUXILIARY_HOST}`);
-
 const unhandledRejections = new Map();
 
 process.on("unhandledRejection", (reason, promise) => {
@@ -48,6 +38,7 @@ process.on("warning", (warning) => {
 
 process.on("SIGINT", () => {
   console.log("Received SIGINT");
+  exit(0);
 });
 
 // Using a single function to handle multiple signals
@@ -58,17 +49,18 @@ function handle(signal) {
 process.on("SIGINT", handle);
 process.on("SIGTERM", handle);
 
-// Intentionally cause an exception, but don't catch it.
-// nonexistentFunc();
-// Still crashes Node.js
+const NODE_ENV_DEV = "development";
+const nodeEnv = process.env.NODE_ENV || NODE_ENV_DEV;
+console.log(`nodeEnv: ${nodeEnv}`);
+process.env.NODE_ENV = nodeEnv;
+dotEnv.config();
 
 const app = express();
-app.use(cors());
-
-const port = process.env.PORT || 3000;
-
+setupParseServer(app, nodeEnv);
+setupWebClient(app);
 installProxyMiddlewares(app);
 
+const port = process.env.PORT || 8080;
 app.listen(port, function () {
   console.log(`${new Date()} - app is listening on port: ${port}`);
 });
