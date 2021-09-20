@@ -32,14 +32,12 @@
     "@babel/core": "^7.15.5",
     "amtf-proxy": "^1.2.9",
     "axios": "^0.21.4",
-    "b4amtf": "^1.0.2",
     "cors": "^2.8.5",
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
     "f4amtf": "^1.0.7",
-    "node-cmd": "^5.0.0",
-    "parse-server": "^4.5.0"
+    "node-cmd": "^5.0.0"
   },
   "devDependencies": {
     "babel-watch": "^7.5.0",

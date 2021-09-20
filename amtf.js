@@ -1,6 +1,6 @@
 import express from "express";
 import dotEnv from "dotenv-flow";
-import setupParseServer from "b4amtf";
+// import setupParseServer from "b4amtf";
 import { setupWebClient } from "f4amtf";
 import { installProxyMiddlewares } from "amtf-proxy";
 import { arch, exit } from "process";
@@ -56,7 +56,7 @@ process.env.NODE_ENV = nodeEnv;
 dotEnv.config();
 
 const app = express();
-setupParseServer(app, nodeEnv);
+// setupParseServer(app, nodeEnv);
 setupWebClient(app);
 installProxyMiddlewares(app);
 

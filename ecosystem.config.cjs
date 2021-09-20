@@ -48,7 +48,7 @@ module.exports = {
         "npm install --only=prod && NODE_ENV=production npm run build && scp -r -i ~/.ssh/aws-amtf.pem online/* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/current/online/",
       // post-deploy action
       "post-deploy":
-        "npm install --only=prod && pm2 reload ecosystem.config.cjs --env production",
+        "npm install --only=prod && npm prune && pm2 reload ecosystem.config.cjs --env production",
     },
   },
 };
