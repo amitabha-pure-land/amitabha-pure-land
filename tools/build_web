@@ -1,0 +1,5 @@
+#!/bin/bash
+cd `dirname $0`/..
+pwd
+source .env
+cd node_modules/f4amtf/web && npm install && NODE_ENV=$NODE_ENV VUE_APP_PARSE_SERVER_URL=$VUE_APP_PARSE_SERVER_URL VUE_APP_PARSE_APP_ID=$VUE_APP_PARSE_APP_ID VUE_APP_PARSE_JS_KEY=$VUE_APP_PARSE_JS_KEY VUE_APP_PARENT_URL=.. VUE_APP_AMITABHA=香光庄严 VUE_APP_PUBLIC_PATH=/online/ npm run build -- --mode $NODE_ENV && mv dist ../online && ../scripts/post-build

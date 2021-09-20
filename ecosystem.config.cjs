@@ -6,7 +6,7 @@ module.exports = {
 
       env: {
         PORT: 8080,
-        SERVER_BASE_URL: "http://13.228.189.66/amtf",
+        SERVER_BASE_URL: "http://13.228.189.66",
       },
       // add development environment variables
       env_development: {
