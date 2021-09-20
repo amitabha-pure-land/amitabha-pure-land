@@ -5,21 +5,16 @@ module.exports = {
       watch: ".",
 
       env: {
-        VUE_APP_PARSE_SERVER_URL: "http://13.228.189.66/parse",
-        VUE_APP_PARSE_APP_ID: "ITYDPoZKA1nYeyFaUgPlYM99sDL2I5cNQ7huEKcw",
-        VUE_APP_PARSE_JS_KEY: "hRETBihNdF7SO9FHM78GxJLbo4cYCuEi4XrrDWED",
+        PORT: 8080,
+        SERVER_BASE_URL: "http://13.228.189.66/amtf",
       },
       // add development environment variables
       env_development: {
-        PORT: 8080,
-        SERVER_BASE_URL: "http://13.228.189.66",
         DEBUG: "express-http-proxy",
       },
       // add production environment variables
       env_production: {
         NODE_ENV: "production",
-        PORT: 8080,
-        SERVER_BASE_URL: "http://13.228.189.66",
       },
     },
   ],
@@ -51,7 +46,7 @@ module.exports = {
       "pre-deploy-local": "",
       // post-deploy action
       "post-deploy":
-        "npm install --only=prod && NODE_ENV=production VUE_APP_PARSE_SERVER_URL=http://13.228.189.66/parse VUE_APP_PARSE_APP_ID=ITYDPoZKA1nYeyFaUgPlYM99sDL2I5cNQ7huEKcw VUE_APP_PARSE_JS_KEY=hRETBihNdF7SO9FHM78GxJLbo4cYCuEi4XrrDWED npm run build && pm2 reload ecosystem.config.cjs --env production",
+        "npm install --only=prod && NODE_ENV=production npm run build && pm2 reload ecosystem.config.cjs --env production",
     },
   },
 };
