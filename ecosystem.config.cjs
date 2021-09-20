@@ -45,10 +45,10 @@ module.exports = {
       "post-setup": "",
       // pre-deploy action
       "pre-deploy-local":
-        "npm install --only=prod && NODE_ENV=production npm run build && scp -r -i ~/.ssh/aws-amtf.pem .env* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/current/ && scp -r -i ~/.ssh/aws-amtf.pem online/* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/current/online/",
+        "npm install --only=prod && NODE_ENV=production npm run build && scp -r -i ~/.ssh/aws-amtf.pem .env* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/ && scp -r -i ~/.ssh/aws-amtf.pem online/* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/online/",
       // post-deploy action
       "post-deploy":
-        "npm install --only=prod && npm prune && pm2 reload ecosystem.config.cjs --env production",
+        "npm install --only=prod && npm prune && rm -rf online && mv ../deploy_buffer/.env* . && mv ../deploy_buffer/online . && pm2 reload ecosystem.config.cjs --env production",
     },
   },
 };
