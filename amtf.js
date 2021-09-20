@@ -58,7 +58,8 @@ dotEnv.config();
 const app = express();
 // setupParseServer(app, nodeEnv);
 setupWebClient(app);
-installProxyMiddlewares(app);
+const pathnameList = ["/parse", "/dashboard"];
+installProxyMiddlewares(app, pathnameList);
 
 const port = process.env.PORT || 8080;
 app.listen(port, function () {
