@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node amtf",
     "postinstall": "ln -sf `pwd`/.parse* node_modules/f4amtf/web/ && ln -sf `pwd`/.env* node_modules/f4amtf/web/",
-    "build": "cd node_modules/f4amtf/web && npm install && NODE_ENV=$NODE_ENV VUE_APP_PARSE_SERVER_URL=$VUE_APP_PARSE_SERVER_URL VUE_APP_PARSE_APP_ID=$VUE_APP_PARSE_APP_ID VUE_APP_PARSE_JS_KEY=$VUE_APP_PARSE_JS_KEY VUE_APP_PARENT_URL=.. VUE_APP_AMITABHA=香光庄严 VUE_APP_PUBLIC_PATH=/online/ npm run build -- --mode $NODE_ENV && mv dist ../online && ../scripts/post-build",
+    "build": "cd node_modules/f4amtf/web && npm install && NODE_ENV=$NODE_ENV VUE_APP_PUBLIC_PATH=/online/ npm run build -- --mode $NODE_ENV && mv dist ../online && ../scripts/post-build",
     "postbuild": "rm -rf online && mv node_modules/f4amtf/online .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "lint": "eslint --cache \"**/*.{js,cjs}\"",
@@ -37,7 +37,7 @@
     "dotenv-flow": "^3.2.0",
     "express": "^4.17.1",
     "express-http-proxy": "^1.6.2",
-    "f4amtf": "^1.0.3",
+    "f4amtf": "^1.0.4",
     "node-cmd": "^5.0.0",
     "parse-server": "^4.5.0"
   },
