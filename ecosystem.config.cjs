@@ -42,7 +42,7 @@ module.exports = {
       "pre-setup": "",
       // Post-setup commands or path to a script on the host machine
       // eg: placing configurations in the shared dir etc
-      "post-setup": "mkdir -p /home/ubuntu/code/amitabha-pure-land/deploy_buffer/",
+      "post-setup": "mkdir -p /home/ubuntu/code/amitabha-pure-land/deploy_buffer/online/",
       // pre-deploy action
       "pre-deploy-local":
         "npm install --only=prod && NODE_ENV=production npm run build && scp -r -i ~/.ssh/aws-amtf.pem .env* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/ && scp -r -i ~/.ssh/aws-amtf.pem online/* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/online/",
