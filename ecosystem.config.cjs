@@ -3,6 +3,7 @@ module.exports = {
     {
       script: "amtf.js",
       watch: ".",
+      ignore_watch: ["online"],
 
       env: {
         PORT: 8080,
