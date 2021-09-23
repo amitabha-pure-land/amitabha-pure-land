@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node amtf",
     "postinstall": "ln -sf `pwd`/.parse* node_modules/f4amtf/web/ && ln -sf `pwd`/.env* node_modules/f4amtf/web/",
-    "build": "tools/build_web",
+    "build_web": "tools/build_web",
     "postbuild": "rm -rf online && mv node_modules/f4amtf/online .",
     "test": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
     "lint": "eslint --cache \"**/*.{js,cjs}\"",
