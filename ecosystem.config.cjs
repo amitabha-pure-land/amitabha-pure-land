@@ -3,7 +3,7 @@ module.exports = {
     {
       script: "amtf.js",
       watch: ["docs", "online"],
-      ignore_watch: ["node_modules"],
+      ignore_watch: [".git", "node_modules"],
       watch_options: {
         followSymlinks: false,
       },
