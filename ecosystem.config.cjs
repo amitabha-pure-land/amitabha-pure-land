@@ -49,7 +49,7 @@ module.exports = {
         "mkdir -p /home/ubuntu/code/amitabha-pure-land/deploy_buffer/",
       // pre-deploy action
       "pre-deploy-local":
-        "npm install --only=prod && NODE_ENV=production npm run build-web && tar -czvf online.tar.gz online && scp -r -i ~/.ssh/aws-amtf.pem .env* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/ && scp -r -i ~/.ssh/aws-amtf.pem online.tar.gz ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/ && rm online.tar.gz",
+        "npm install --only=prod && NODE_ENV=production npm run build_web && tar -czvf online.tar.gz online && scp -r -i ~/.ssh/aws-amtf.pem .env* ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/ && scp -r -i ~/.ssh/aws-amtf.pem online.tar.gz ubuntu@13.228.189.66:/home/ubuntu/code/amitabha-pure-land/deploy_buffer/ && rm online.tar.gz",
       // post-deploy action
       "post-deploy":
         "npm install --only=prod && npm prune && rm -rf online && mv ../deploy_buffer/.env* . && tar xvzf ../deploy_buffer/online.tar.gz && pm2 reload ecosystem.config.cjs --env production",
