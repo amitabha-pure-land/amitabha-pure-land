@@ -6,6 +6,7 @@ require 'json'
 
 def call_parse_function(name, params)
   result = Parse.call_function name, params, raw: true
+  puts result
   json = JSON.parse(result.to_s)
   json['result']
 end

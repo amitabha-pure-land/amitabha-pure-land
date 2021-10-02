@@ -5,7 +5,7 @@ ENV=$2
 MODULE_ID=$3
 
 if [ "${ENV}" == "" ] ; then
-    ENV=development
+    ENV=glitch
 fi
 
 source  ../.env.$ENV.local
