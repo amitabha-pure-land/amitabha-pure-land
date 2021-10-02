@@ -2,8 +2,11 @@ module.exports = {
   apps: [
     {
       script: "amtf.js",
-      // watch: ".",
-      // ignore_watch: ["online"],
+      watch: true,
+      ignore_watch: [".git", "node_modules"],
+      watch_options: {
+        followSymlinks: false,
+      },
 
       env: {
         PORT: 8080,
