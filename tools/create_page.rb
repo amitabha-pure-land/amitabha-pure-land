@@ -25,6 +25,8 @@ def process_one_file(template_file1, template_file2, input_dir, output_dir, inde
     table = CSV.parse(File.read(youtube_csv), headers: true)
     table.each do |r|
         submodule_title = r[3]
+        break if !submodule_title
+        
         youtube_url = r[1]
 
         submodule_title += "(未找到視頻)" if !youtube_url
