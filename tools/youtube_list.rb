@@ -114,7 +114,7 @@ def youtube_playlist_to_csv(playlist_id, csv_file_dir)
     break if !nextPageToken
   end
   
-  array = array.sort_by { |e| e[3] }
+  # array = array.sort_by { |e| e[3] }
 
   puts "writng to file: #{filename}"
   CSV.open(filename, "w") do |csv|
