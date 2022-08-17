@@ -28,6 +28,7 @@ def process_one_file(template_file1, template_file2, input_dir, output_dir, inde
         break if !submodule_title
         
         youtube_url = r[1]
+        next if youtube_url == "Video URL"
 
         submodule_title += "(未找到視頻)" if !youtube_url
         youtube_url = "" if !youtube_url
