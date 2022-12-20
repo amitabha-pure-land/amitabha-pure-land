@@ -47,7 +47,7 @@ def authorize
 
       on_newline = ->(new_line) do
           puts "process said: #{new_line}"
-          unless new_line.start_with?('== Sinatra') || new_line.include?("INFO")
+          unless new_line.start_with?('== Sinatra') || new_line.start_with?('Ignoring') || new_line.include?("INFO")
             code = new_line.chomp
             stdin.close
             stdout.close
