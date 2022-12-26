@@ -12,10 +12,19 @@ def call_parse_function(name, params)
 end
 
 def download_file(url, dest)
-  # FileUtils.touch(dest)
-  open(url) do |u|
-    File.open(dest, 'wb') { |f| f.write(u.read) }
+  retry_count = 3
+  begin
+    if retry_count > 0
+      open(url) do |u|
+        File.open(dest, 'wb') { |f| f.write(u.read) }
+      end
+    end
+  rescue => exception
+    puts exception
+    retry_count -= 1
+    retry
   end
+  nil
 end
 
 def process_file(module_html, yt_videos_path)
@@ -48,11 +57,10 @@ def process_file(module_html, yt_videos_path)
       url = maxFormat['url']
       dest = "#{yt_videos_path}/#{sub_module_title}-#{maxFormat['format'].split('(')[1].split(')')[0]}.mp4"
       if !File.file?(dest)
-        puts "Dowloading: #{url} to #{dest} ..."
+        puts "Downloading #{dest} ..."
         download_file(url, dest)
       end
 
-      break
     end
  
   nil
